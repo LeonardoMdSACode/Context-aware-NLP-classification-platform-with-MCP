@@ -1,5 +1,9 @@
 # Under construction...
 
+venv\Scripts\activate
+uvicorn app.main:app --reload --host 127.0.0.1 --port 8000
+streamlit run ui/streamlit_app.py --server.port 8501 --server.address 127.0.0.1
+
 ## Initial struture
 
 Context-aware NLP classification platform with MCP/
