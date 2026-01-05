@@ -1,6 +1,7 @@
 from functools import lru_cache
 from pathlib import Path
-from pydantic import BaseSettings, Field
+from pydantic_settings import BaseSettings  # updated for Pydantic v2
+from pydantic import Field
 
 
 class Settings(BaseSettings):
@@ -51,10 +52,15 @@ class Settings(BaseSettings):
     # Embedded MCP (HF Spaces)
     MCP_EMBEDDED: bool = True
 
-    # Local / distributed MCP (docker-compose)
-    MCP_TAXONOMY_URL: str = "http://taxonomy-server:7001"
-    MCP_POLICY_URL: str = "http://policy-server:7002"
-    MCP_HISTORY_URL: str = "http://history-server:7003"
+    # Local MCP JSON files for embedded context (used if MCP_EMBEDDED=True)
+    MCP_TAXONOMY_URL: str = str(DATA_DIR / "mcp/taxonomy.json")
+    MCP_POLICY_URL: str = str(DATA_DIR / "mcp/policies.json")
+    MCP_HISTORY_URL: str = str(DATA_DIR / "mcp/history.json")
+
+    # Local / distributed MCP (docker-compose) fallback URLs
+    MCP_DISTRIBUTED_TAXONOMY_URL: str = "http://taxonomy-server:7001"
+    MCP_DISTRIBUTED_POLICY_URL: str = "http://policy-server:7002"
+    MCP_DISTRIBUTED_HISTORY_URL: str = "http://history-server:7003"
 
     # -------------------------
     # Logging
@@ -79,5 +85,8 @@ def get_settings() -> Settings:
     # Ensure required directories exist (safe for HF Spaces)
     settings.LOG_DIR.mkdir(parents=True, exist_ok=True)
     settings.MODEL_DIR.mkdir(parents=True, exist_ok=True)
+
+    # Ensure MCP data folder exists
+    (settings.DATA_DIR / "mcp").mkdir(parents=True, exist_ok=True)
 
     return settings

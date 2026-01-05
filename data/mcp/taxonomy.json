@@ -1,0 +1,18 @@
+{
+    "finance": {
+        "invoice": {
+            "description": "Documents related to invoices, payments, and bills.",
+            "keywords": ["invoice", "payment", "amount", "total"]
+        },
+        "expense_report": {
+            "description": "Internal employee expense reports.",
+            "keywords": ["expense", "reimbursement", "report"]
+        }
+    },
+    "hr": {
+        "leave_request": {
+            "description": "Requests for leave or time off.",
+            "keywords": ["leave", "vacation", "absence"]
+        }
+    }
+}

@@ -1,0 +1,16 @@
+{
+    "finance": {
+        "invoice": [
+            {
+                "document_id": "INV-20250101",
+                "processed_at": "2025-01-01T12:00:00",
+                "label": "finance.invoice"
+            },
+            {
+                "document_id": "INV-20250102",
+                "processed_at": "2025-01-02T15:30:00",
+                "label": "finance.invoice"
+            }
+        ]
+    }
+}

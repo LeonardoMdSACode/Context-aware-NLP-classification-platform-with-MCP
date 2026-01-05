@@ -1,3 +1,4 @@
+from typing import Any
 from dataclasses import dataclass
 from app.config import get_settings
 

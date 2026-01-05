@@ -1,4 +1,6 @@
 from typing import Any, Dict, List, Optional
+from pathlib import Path
+import json
 
 from app.config import get_settings
 from app.orchestration.mcp_client import (
@@ -43,6 +45,18 @@ class ResolvedContext:
         }
 
 
+def _load_local_json(path: str) -> Dict[str, Any]:
+    """Safely load local JSON file, return empty dict if missing or invalid."""
+    try:
+        file_path = Path(path)
+        if file_path.exists():
+            with open(file_path, "r", encoding="utf-8") as f:
+                return json.load(f)
+        return {}
+    except Exception:
+        return {}
+
+
 def resolve_context(
     text: str,
     metadata: Optional[Dict[str, Any]] = None,
@@ -50,51 +64,60 @@ def resolve_context(
     """
     Resolve structured context via MCP.
 
-    Rules:
-    - Context is explicit and deterministic
-    - Failures are isolated per source
-    - No implicit retries or inference-time heuristics
+    - Uses local embedded JSON files if MCP_EMBEDDED=True
+    - Otherwise uses fetch_* functions to retrieve context from distributed MCP servers
     """
-
     settings = get_settings()
+    metadata = metadata or {}
     sources_used: List[str] = []
 
     taxonomy_ctx = None
     policy_ctx = None
     history_ctx = None
 
-    # -------------------------
-    # Taxonomy Context
-    # -------------------------
-    try:
-        taxonomy_ctx = fetch_taxonomy_context(text=text, metadata=metadata)
+    if settings.MCP_EMBEDDED:
+        # -------------------------
+        # Load local JSONs
+        # -------------------------
+        taxonomy_ctx = _load_local_json(settings.MCP_TAXONOMY_URL)
         if taxonomy_ctx:
-            sources_used.append("taxonomy_server")
-    except Exception:
-        if settings.MCP_FAIL_FAST:
-            raise
+            sources_used.append(str(Path(settings.MCP_TAXONOMY_URL).name))
 
-    # -------------------------
-    # Policy Context
-    # -------------------------
-    try:
-        policy_ctx = fetch_policy_context(text=text, metadata=metadata)
+        policy_ctx = _load_local_json(settings.MCP_POLICY_URL)
         if policy_ctx:
-            sources_used.append("policy_server")
-    except Exception:
-        if settings.MCP_FAIL_FAST:
-            raise
+            sources_used.append(str(Path(settings.MCP_POLICY_URL).name))
 
-    # -------------------------
-    # Historical Context
-    # -------------------------
-    try:
-        history_ctx = fetch_history_context(text=text, metadata=metadata)
+        history_ctx = _load_local_json(settings.MCP_HISTORY_URL)
         if history_ctx:
-            sources_used.append("history_server")
-    except Exception:
-        if settings.MCP_FAIL_FAST:
-            raise
+            sources_used.append(str(Path(settings.MCP_HISTORY_URL).name))
+
+    else:
+        # -------------------------
+        # Distributed MCP
+        # -------------------------
+        try:
+            taxonomy_ctx = fetch_taxonomy_context(text=text, metadata=metadata)
+            if taxonomy_ctx:
+                sources_used.append("taxonomy_server")
+        except Exception:
+            if settings.MCP_FAIL_FAST:
+                raise
+
+        try:
+            policy_ctx = fetch_policy_context(text=text, metadata=metadata)
+            if policy_ctx:
+                sources_used.append("policy_server")
+        except Exception:
+            if settings.MCP_FAIL_FAST:
+                raise
+
+        try:
+            history_ctx = fetch_history_context(text=text, metadata=metadata)
+            if history_ctx:
+                sources_used.append("history_server")
+        except Exception:
+            if settings.MCP_FAIL_FAST:
+                raise
 
     return ResolvedContext(
         taxonomy=taxonomy_ctx,

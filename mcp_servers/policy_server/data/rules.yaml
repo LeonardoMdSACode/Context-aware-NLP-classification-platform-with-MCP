@@ -1,0 +1,5 @@
+policies:
+  finance_rules:
+    max_invoice_amount: 10000
+  hr_rules:
+    leave_request: approval_required
