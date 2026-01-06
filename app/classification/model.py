@@ -1,4 +1,5 @@
 from typing import Any, Dict, Optional
+from pathlib import Path
 
 from app.classification.sklearn_model import SklearnClassifier
 from app.classification.llm_adapter import LLMAdapter
@@ -10,22 +11,24 @@ settings = get_settings()
 class Classifier:
     """
     Abstract classifier. Can switch between:
-    - Sklearn baseline
+    - Sklearn baseline (trained from JSON dataset)
     - Optional LLM-assisted classification
     """
 
-    def __init__(self):
-        self.model = SklearnClassifier()
+    def __init__(self, dataset_path: Optional[str] = None):
+        # Use default training dataset if none provided
+        default_dataset = Path("data/samples/training_data.json")
+        if dataset_path is None and default_dataset.exists():
+            dataset_path = str(default_dataset)
+
+        self.model = SklearnClassifier(dataset_path=dataset_path)
         self.llm = LLMAdapter() if settings.MCP_EMBEDDED else None
 
-    def predict(
-        self, text: str, context: Dict[str, Any]
-    ) -> Dict[str, Any]:
+    def predict(self, text: str, context: Dict[str, Any]) -> Dict[str, Any]:
         """
         Predict label using structured context.
         Returns dict: {label, confidence}
         """
-
         # Step 1: baseline model
         baseline_result = self.model.predict(text)
 

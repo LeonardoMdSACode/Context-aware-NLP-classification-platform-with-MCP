@@ -1,0 +1,42 @@
+[
+  {
+    "text": "Invoice for Q1 2025 total amount $15,200",
+    "label": "finance.invoice"
+  },
+  {
+    "text": "Invoice for Q2 2025 total amount $8,450",
+    "label": "finance.invoice"
+  },
+  {
+    "text": "Invoice for Q3 2025 total amount $23,923",
+    "label": "finance.invoice"
+  },
+  {
+    "text": "Invoice for Q4 2025 total amount $12,000",
+    "label": "finance.invoice"
+  },
+  {
+    "text": "HR policy update regarding employee leave",
+    "label": "hr.policy"
+  },
+  {
+    "text": "New guidelines for work-from-home policy",
+    "label": "hr.policy"
+  },
+  {
+    "text": "Mandatory compliance training policy for all staff",
+    "label": "hr.policy"
+  },
+  {
+    "text": "Contract agreement between Company A and Company B",
+    "label": "legal.contract"
+  },
+  {
+    "text": "Non-disclosure agreement for external partners",
+    "label": "legal.contract"
+  },
+  {
+    "text": "Service level agreement for client X",
+    "label": "legal.contract"
+  }
+]

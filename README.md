@@ -16,8 +16,15 @@ uvicorn app.main:app --reload --host 127.0.0.1 --port 8000
 streamlit run ui/streamlit_app.py --server.port 8501 --server.address 127.0.0.1
 
 ### Tests
+
 pytest -v
+
 Or manual smoke test in test_backend.py
+
+
+### Train model
+
+python scripts/train_model.py
 
 ## Initial struture
 
