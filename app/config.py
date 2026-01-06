@@ -41,7 +41,7 @@ class Settings(BaseSettings):
     # -------------------------
     DEFAULT_MODEL: str = "sklearn"
     CONFIDENCE_THRESHOLD: float = 0.6
-    ENABLE_ABSTENTION: bool = True
+    ENABLE_ABSTENTION: bool = False
 
     # -------------------------
     # MCP (Model Context Protocol)

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Context-aware NLP Classification with MCP</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Context-aware NLP Classification Platform</h1>
+
+        <div class="input-section">
+            <label for="query">Enter text for classification:</label>
+            <textarea id="query" placeholder="Type your text here..."></textarea>
+            <button onclick="sendQuery()">Submit</button>
+        </div>
+
+        <div class="output-section">
+            <h2>Prediction Result:</h2>
+            <pre id="result">Waiting for input...</pre>
+        </div>
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>

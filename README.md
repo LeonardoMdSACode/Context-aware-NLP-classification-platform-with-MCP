@@ -31,72 +31,76 @@ python scripts/train_model.py
 ## Initial struture
 
 Context-aware NLP classification platform with MCP/
-│
-├── Dockerfile                  # Root-level (HF Spaces compatible)
-├── docker-compose.yml           # Local multi-service orchestration
-│
-├── README.md
-├── requirements.txt
-├── pyproject.toml
-│
-├── app/
-│   ├── main.py
-│   ├── config.py
-│   │
-│   ├── api/
-│   │   ├── routes.py
-│   │   └── schemas.py
-│   │
-│   ├── orchestration/
-│   │   ├── mcp_client.py
-│   │   ├── context_resolver.py
-│   │   └── fallback.py
-│   │
-│   ├── classification/
-│   │   ├── preprocess.py
-│   │   ├── model.py
-│   │   ├── sklearn_model.py
-│   │   ├── llm_adapter.py
-│   │   └── decision.py
-│   │
-│   ├── logging/
-│   │   ├── context_log.py
-│   │   └── inference_log.py
-│   │
-│   └── utils/
-│       └── validators.py
-│
-├── mcp_servers/
-│   ├── taxonomy_server/
-│   │   ├── server.py
-│   │   └── data/
-│   │       └── taxonomy.sqlite
-│   │
-│   ├── policy_server/
-│   │   ├── server.py
-│   │   └── data/
-│   │       └── rules.yaml
-│   │
-│   └── history_server/
-│       ├── server.py
-│       └── data/
-│           └── labels.csv
-│
-├── ui/
-│   └── streamlit_app.py
-│
-├── tests/
-│   ├── test_mcp_servers.py
-│   ├── test_context_resolution.py
-│   ├── test_classification.py
-│   └── test_fallbacks.py
-│
-├── scripts/
-│   ├── train_model.py
-│   ├── evaluate.py
-│   └── seed_data.py
-│
-├── data/
-│   ├── raw/
-│   ├── processed/
-│   └── samples/
+├─ Dockerfile
+├─ docker-compose.yml
+├─ LICENSE
+├─ README.md
+├─ requirements-dev.txt
+├─ requirements.txt
+├─ start.sh
+├─ test_backend.py
+├─ app/
+│  ├─ config.py
+│  ├─ logging_config.py
+│  ├─ main.py                  # FastAPI entrypoint
+│  ├─ api/
+│  │  ├─ routes.py             # API endpoints (e.g., /predict)
+│  │  └─ schemas.py
+│  ├─ classification/
+│  │  ├─ decision.py
+│  │  ├─ llm_adapter.py
+│  │  ├─ model.py
+│  │  ├─ preprocess.py
+│  │  └─ sklearn_model.py
+│  ├─ context/
+│  │  └─ resolver.py
+│  ├─ logging/
+│     ├─ context_log.py
+│     └─ inference_log.py
+├─ orchestration/
+│  ├─ context_resolver.py
+│  └─ mcp_client.py
+├─ utils/
+│  └─ validators.py
+├─ data/
+│  ├─ mcp/
+│  │  ├─ history.json
+│  │  ├─ policies.json
+│  │  └─ taxonomy.json
+│  ├─ processed/
+│  ├─ raw/
+│  └─ samples/
+│     └─ training_data.json
+├─ docs/
+│  └─ TECH_DEBT.md
+├─ logs/
+├─ mcp_servers/
+│  ├─ history_server/
+│  │  ├─ server.py
+│  │  └─ data/
+│  │     └─ labels.csv
+│  ├─ policy_server/
+│  │  ├─ server.py
+│  │  └─ data/
+│  │     └─ rules.yaml
+│  └─ taxonomy_server/
+│     ├─ server.py
+│     └─ data/
+├─ models/
+│  └─ trained_pipeline.joblib
+├─ scripts/
+│  ├─ evaluate.py
+│  ├─ seed_data.py
+│  └─ train_model.py
+├─ tests/
+│  ├─ conftest.py
+│  ├─ test_api.py
+│  ├─ test_classification.py
+│  ├─ test_context_resolution.py
+│  └─ test_mcp_servers.py
+└─ ui/
+   ├─ static/
+   │   ├─ style.css
+   │   └─ script.js
+   └─ templates/
+       └─ index.html

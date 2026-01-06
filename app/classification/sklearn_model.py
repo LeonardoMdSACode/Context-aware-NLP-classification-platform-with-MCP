@@ -1,12 +1,12 @@
-# app/classification/sklearn_model.py
-from typing import Dict
+from pathlib import Path
+import joblib
+import json
+import re
+from sklearn.pipeline import Pipeline
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
-from sklearn.pipeline import Pipeline
-import re
-import json
-from pathlib import Path
-import joblib  # for saving/loading models
+from typing import Dict
+import os
 
 # -------------------------
 # Preprocessing
@@ -25,12 +25,18 @@ except ImportError:
 class SklearnClassifier:
     """
     Lightweight TF-IDF + Logistic Regression classifier for finance/hr/legal.
-    Trained model is loaded from models/trained_pipeline.joblib if present.
     """
 
-    MODEL_PATH = Path(__file__).parent.parent / "models" / "trained_pipeline.joblib"
+    # Make MODEL_PATH absolute relative to project root
+    PROJECT_ROOT = Path(__file__).resolve().parents[2]
+    MODEL_PATH = PROJECT_ROOT / "models" / "trained_pipeline.joblib"
 
-    def __init__(self, dataset_path: str = "data/samples/training_data.json"):
+    def __init__(self, dataset_path: str = None):
+        if dataset_path is None:
+            dataset_path = self.PROJECT_ROOT / "data" / "samples" / "training_data.json"
+        else:
+            dataset_path = Path(dataset_path)
+
         self.pipeline = Pipeline([
             ("tfidf", TfidfVectorizer(ngram_range=(1, 2))),
             ("clf", LogisticRegression(max_iter=500))
@@ -43,46 +49,49 @@ class SklearnClassifier:
         if self.MODEL_PATH.exists():
             self.pipeline = joblib.load(self.MODEL_PATH)
             self.is_trained = True
+        elif dataset_path.exists():
+            self.train_from_json(dataset_path)
         else:
-            file_path = Path(dataset_path)
-            if file_path.exists():
-                self.train_from_json(dataset_path)
+            print(f"[Warning] No trained model or dataset found. Using fallback logic.")
 
-    def train_from_json(self, dataset_path: str):
-        file_path = Path(dataset_path)
-        if not file_path.exists():
-            raise ValueError(f"Dataset file not found: {dataset_path}")
-
-        data = json.loads(file_path.read_text(encoding="utf-8"))
+    def train_from_json(self, dataset_path: Path):
+        data = json.loads(dataset_path.read_text(encoding="utf-8"))
         texts = [clean_text(d["text"]) for d in data]
         labels = [d["label"] for d in data]
 
         self.pipeline.fit(texts, labels)
         self.is_trained = True
 
-        # -------------------------
-        # Save trained pipeline
-        # -------------------------
-        self.MODEL_PATH.parent.mkdir(exist_ok=True)
+        # Save model
+        self.MODEL_PATH.parent.mkdir(exist_ok=True, parents=True)
         joblib.dump(self.pipeline, self.MODEL_PATH)
 
     def predict(self, text: str) -> Dict[str, float]:
         text_clean = clean_text(text)
         if self.is_trained:
-            label = self.pipeline.predict([text_clean])[0]
-            confidence = float(max(self.pipeline.predict_proba([text_clean])[0]))
+            try:
+                label = self.pipeline.predict([text_clean])[0]
+                # fallback if pipeline has no predict_proba (safety)
+                try:
+                    confidence = float(max(self.pipeline.predict_proba([text_clean])[0]))
+                except Exception:
+                    confidence = 0.8
+            except Exception as e:
+                print("[Error] Sklearn prediction failed:", e)
+                label = "unknown"
+                confidence = 0.3
         else:
-            # fallback if no training data provided
-            # Always return one of the three labels
+            # fallback heuristic
             if "invoice" in text_clean or ("q" in text_clean and "num" in text_clean):
                 label = "finance.invoice"
             elif "policy" in text_clean or "hr" in text_clean:
                 label = "hr.policy"
             else:
                 label = "legal.contract"
-            confidence = 0.3  # low confidence for unknowns
+            confidence = 0.3
 
         return {"label": label, "confidence": confidence}
+
 
 # -------------------------
 # Quick sanity check when run directly

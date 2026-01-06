@@ -9,3 +9,5 @@ sqlalchemy
 pyyaml
 pytest
 pydantic-settings
+python-multipart
+transformers

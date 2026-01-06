@@ -3,7 +3,7 @@ from dataclasses import dataclass
 from app.config import get_settings
 
 from app.logging.inference_log import log_inference
-from app.logging.context_log import log_context_resolution  # ← added
+from app.logging.context_log import log_context_resolution
 import logging
 
 settings = get_settings()
@@ -44,12 +44,13 @@ def classify_document(text: str, context: Any) -> ClassificationDecision:
     confidence = result.get("confidence", 0.0)
 
     abstained = False
+    # Abstention disabled by policy (always return a label)
     if settings.ENABLE_ABSTENTION and confidence < settings.CONFIDENCE_THRESHOLD:
-        label = None
-        abstained = True
         logger.warning(
-            "Low confidence classification, abstaining", extra={"confidence": confidence}
+            "Low confidence classification, abstention disabled",
+            extra={"confidence": confidence},
         )
+
 
     # Log to persistent JSON files
     log_inference(
