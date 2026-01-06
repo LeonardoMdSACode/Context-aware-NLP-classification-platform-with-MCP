@@ -1,8 +1,8 @@
 ---
 title: Context-aware NLP classification platform with MCP
 emoji: 🧠
-colorFrom: red
-colorTo: deep red
+colorFrom: indigo
+colorTo: red
 sdk: docker
 app_file: Dockerfile
 pinned: false

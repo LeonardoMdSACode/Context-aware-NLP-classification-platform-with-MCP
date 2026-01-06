@@ -1,6 +1,18 @@
+import sys
+from pathlib import Path
+
+# -------------------------
+# Ensure 'app' folder is importable
+# -------------------------
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.append(str(PROJECT_ROOT))
+
+# -------------------------
+# Imports
+# -------------------------
 import streamlit as st
 import requests
-from pathlib import Path
 from app.config import get_settings
 
 settings = get_settings()

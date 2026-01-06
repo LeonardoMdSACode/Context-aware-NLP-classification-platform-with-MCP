@@ -1,6 +1,6 @@
 from app.orchestration.context_resolver import resolve_context
 
-def test_context_resolution_embedded():
+def test_context_resolution_embedded(embedded_mcp_servers):
     context = resolve_context(
         text="Invoice for Q4 2025",
         metadata={"department": "finance"}
