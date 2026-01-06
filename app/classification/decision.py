@@ -23,7 +23,15 @@ def classify_document(text: str, context: Any) -> ClassificationDecision:
     from app.classification.model import Classifier
 
     classifier = Classifier()
-    result = classifier.predict(text=text, context=context.to_dict())
+    if hasattr(context, "to_dict"):
+        context_dict = context.to_dict()
+    elif isinstance(context, dict):
+        context_dict = context
+    else:
+        context_dict = {}
+
+    result = classifier.predict(text=text, context=context_dict)
+
 
     label = result.get("label")
     confidence = result.get("confidence", 0.0)

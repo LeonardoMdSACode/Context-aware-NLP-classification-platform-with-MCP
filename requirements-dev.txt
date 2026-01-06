@@ -1,0 +1,14 @@
+pytest
+httpx
+pytest-cov
+fastapi
+uvicorn
+pydantic
+streamlit
+requests
+pandas
+scikit-learn
+sqlalchemy
+pyyaml
+pytest
+pydantic-settings

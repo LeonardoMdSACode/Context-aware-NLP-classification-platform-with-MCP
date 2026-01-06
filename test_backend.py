@@ -1,3 +1,5 @@
+# Manual smoke test of backend
+
 import requests
 import json
 

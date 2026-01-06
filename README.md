@@ -1,8 +1,23 @@
+---
+title: Context-aware NLP classification platform with MCP
+emoji: 🧠
+colorFrom: red
+colorTo: deep red
+sdk: docker
+app_file: Dockerfile
+pinned: false
+license: mit
+---
+
 # Under construction...
 
 venv\Scripts\activate
 uvicorn app.main:app --reload --host 127.0.0.1 --port 8000
 streamlit run ui/streamlit_app.py --server.port 8501 --server.address 127.0.0.1
+
+### Tests
+pytest -v
+Or manual smoke test in test_backend.py
 
 ## Initial struture
 
