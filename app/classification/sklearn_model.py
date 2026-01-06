@@ -1,3 +1,4 @@
+# app/classification/sklearn_model.py
 from typing import Dict
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
@@ -5,20 +6,18 @@ from sklearn.pipeline import Pipeline
 import re
 import json
 from pathlib import Path
-import joblib  # new import for saving/loading models
+import joblib  # for saving/loading models
 
-# Import from the module if already exists; else fallback to local definition
+# -------------------------
+# Preprocessing
+# -------------------------
 try:
     from app.classification.preprocess import clean_text as external_clean_text
     clean_text = external_clean_text
 except ImportError:
-    # -------------------------
-    # Minimal preprocessing
-    # -------------------------
     def clean_text(text: str) -> str:
-        # Lowercase, remove extra spaces, standardize numeric patterns
         text = text.lower()
-        text = re.sub(r"\d+", "NUM", text)  # Replace numbers with placeholder
+        text = re.sub(r"\d+", "NUM", text)
         text = re.sub(r"\s+", " ", text)
         return text.strip()
 
@@ -26,16 +25,12 @@ except ImportError:
 class SklearnClassifier:
     """
     Lightweight TF-IDF + Logistic Regression classifier for finance/hr/legal.
-    Deterministic and trainable from JSON dataset.
+    Trained model is loaded from models/trained_pipeline.joblib if present.
     """
 
     MODEL_PATH = Path(__file__).parent.parent / "models" / "trained_pipeline.joblib"
 
     def __init__(self, dataset_path: str = "data/samples/training_data.json"):
-        """
-        dataset_path: optional path to JSON file with training data
-        format: [{"text": "...", "label": "finance.invoice"}, ...]
-        """
         self.pipeline = Pipeline([
             ("tfidf", TfidfVectorizer(ngram_range=(1, 2))),
             ("clf", LogisticRegression(max_iter=500))
@@ -78,12 +73,27 @@ class SklearnClassifier:
             confidence = float(max(self.pipeline.predict_proba([text_clean])[0]))
         else:
             # fallback if no training data provided
+            # Always return one of the three labels
             if "invoice" in text_clean or ("q" in text_clean and "num" in text_clean):
                 label = "finance.invoice"
             elif "policy" in text_clean or "hr" in text_clean:
                 label = "hr.policy"
             else:
                 label = "legal.contract"
-            confidence = 0.75
+            confidence = 0.3  # low confidence for unknowns
 
         return {"label": label, "confidence": confidence}
+
+# -------------------------
+# Quick sanity check when run directly
+# -------------------------
+if __name__ == "__main__":
+    clf = SklearnClassifier()
+    print("Is trained?", clf.is_trained)
+    samples = [
+        "Invoice for Q3 2025 amount 23923 $",
+        "HR policy update for employees",
+        "Signed legal contract for vendor"
+    ]
+    for s in samples:
+        print(s, "->", clf.predict(s))

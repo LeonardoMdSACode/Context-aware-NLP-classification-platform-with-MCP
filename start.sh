@@ -1,24 +1,15 @@
 #!/bin/bash
 set -e
 
-# -------------------------
-# Start FastAPI backend
-# -------------------------
-echo "Starting FastAPI server..."
-uvicorn app.main:app \
-    --host 0.0.0.0 \
-    --port 8000 \
-    --reload &
+# HF provides $PORT for the UI
+PORT=${PORT:-8501}
 
-# -------------------------
-# Start Streamlit frontend
-# -------------------------
+echo "Starting FastAPI server in background..."
+uvicorn app.main:app \
+    --host 127.0.0.1 \
+    --port 8000 &
+
 echo "Starting Streamlit UI..."
 streamlit run ui/streamlit_app.py \
-    --server.port 8501 \
-    --server.address 0.0.0.0 &
-
-# -------------------------
-# Keep container alive
-# -------------------------
-wait
+    --server.port $PORT \
+    --server.address 0.0.0.0
