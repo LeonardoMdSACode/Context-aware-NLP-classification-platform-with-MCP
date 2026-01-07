@@ -1,0 +1,18 @@
+[
+  {
+    "text": "Invoice for Q1 2025 total amount $15,200",
+    "label": "finance.invoice"
+  },
+  {
+    "text": "HR policy update regarding employee leave",
+    "label": "hr.policy"
+  },
+  {
+    "text": "Contract agreement between Company A and Company B",
+    "label": "legal.contract"
+  },
+  {
+    "text": "Invoice for Q4 2025 total amount $12,000",
+    "label": "finance.invoice"
+  }
+]

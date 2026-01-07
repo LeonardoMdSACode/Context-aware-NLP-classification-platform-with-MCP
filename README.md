@@ -22,9 +22,13 @@ pytest -v
 Or manual smoke test in test_backend.py
 
 
-### Train model
+### Train-evaluate model
+
+python scripts\seed_data.py
 
 python scripts/train_model.py
+
+python scripts\evaluate.py
 
 ## Initial struture
 
