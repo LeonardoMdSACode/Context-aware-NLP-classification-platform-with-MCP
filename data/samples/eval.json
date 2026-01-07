@@ -1,18 +1,102 @@
 [
   {
+    "text": "Service level agreement for client X",
+    "label": "legal.contract"
+  },
+  {
+    "text": "Invoice #2025-INV-432 for marketing services",
+    "label": "finance.invoice"
+  },
+  {
+    "text": "Payment reminder for outstanding invoice #INV-3005",
+    "label": "finance.invoice"
+  },
+  {
+    "text": "Payment confirmation for invoice 2025-08-45",
+    "label": "finance.invoice"
+  },
+  {
+    "text": "Policy for reporting workplace incidents",
+    "label": "hr.policy"
+  },
+  {
+    "text": "Service agreement with extended warranty terms",
+    "label": "legal.contract"
+  },
+  {
+    "text": "Invoice for consulting fees Q1 2025",
+    "label": "finance.invoice"
+  },
+  {
+    "text": "Confidentiality agreement for project Alpha",
+    "label": "legal.contract"
+  },
+  {
+    "text": "Policy update regarding mandatory cybersecurity training",
+    "label": "hr.policy"
+  },
+  {
+    "text": "Invoice for Q3 2025 total amount $23,923",
+    "label": "finance.invoice"
+  },
+  {
+    "text": "Invoice for Q2 2025 total amount $8,450",
+    "label": "finance.invoice"
+  },
+  {
     "text": "Invoice for Q1 2025 total amount $15,200",
     "label": "finance.invoice"
+  },
+  {
+    "text": "Policy for remote work approval and guidelines",
+    "label": "hr.policy"
+  },
+  {
+    "text": "Non-disclosure agreement for external partners",
+    "label": "legal.contract"
+  },
+  {
+    "text": "Billing summary for client XYZ, Q4 2025",
+    "label": "finance.invoice"
+  },
+  {
+    "text": "Policy regarding employee expense reimbursement",
+    "label": "hr.policy"
+  },
+  {
+    "text": "Updated HR policy on leave accrual and usage",
+    "label": "hr.policy"
+  },
+  {
+    "text": "Invoice issued for equipment maintenance Q2 2025",
+    "label": "finance.invoice"
+  },
+  {
+    "text": "Monthly invoice for subscription service, April 2025",
+    "label": "finance.invoice"
+  },
+  {
+    "text": "Consulting services contract for project Beta",
+    "label": "legal.contract"
   },
   {
     "text": "HR policy update regarding employee leave",
     "label": "hr.policy"
   },
   {
-    "text": "Contract agreement between Company A and Company B",
+    "text": "Final invoice for Q3 2025 services rendered",
+    "label": "finance.invoice"
+  },
+  {
+    "text": "Vendor contract for software development services",
     "label": "legal.contract"
   },
   {
-    "text": "Invoice for Q4 2025 total amount $12,000",
+    "text": "Payment confirmation received for invoice #2025-10-05",
+    "label": "finance.invoice"
+  },
+  {
+    "text": "Invoice #2025-Q2 for $9,800 issued to client XYZ",
     "label": "finance.invoice"
   }
 ]

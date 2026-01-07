@@ -19,6 +19,7 @@ except ImportError:
         text = text.lower()
         text = re.sub(r"\d+", "NUM", text)
         text = re.sub(r"\s+", " ", text)
+        text = re.sub(r"[\x00-\x1f]+", "", text)
         return text.strip()
 
 
@@ -39,7 +40,7 @@ class SklearnClassifier:
 
         self.pipeline = Pipeline([
             ("tfidf", TfidfVectorizer(ngram_range=(1, 2))),
-            ("clf", LogisticRegression(max_iter=500))
+            ("clf", LogisticRegression(max_iter=500, class_weight='balanced', C=1.0))
         ])
         self.is_trained = False
 

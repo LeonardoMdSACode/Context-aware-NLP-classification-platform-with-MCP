@@ -1,26 +1,214 @@
 [
   {
+    "text": "Invoice issued for project Beta Q2 2025",
+    "label": "finance.invoice"
+  },
+  {
+    "text": "Invoice #INV-4444 for office renovation project",
+    "label": "finance.invoice"
+  },
+  {
+    "text": "Monthly billing statement for April 2025",
+    "label": "finance.invoice"
+  },
+  {
+    "text": "Contract for outsourced IT support",
+    "label": "legal.contract"
+  },
+  {
+    "text": "Revised invoice for Q2 2025 payment",
+    "label": "finance.invoice"
+  },
+  {
+    "text": "Invoice #INV-5432 for software license renewal",
+    "label": "finance.invoice"
+  },
+  {
+    "text": "Invoice for Q4 2025 total amount $12,000",
+    "label": "finance.invoice"
+  },
+  {
+    "text": "Final invoice for consulting hours April 2025",
+    "label": "finance.invoice"
+  },
+  {
+    "text": "Compliance training schedule and policy overview",
+    "label": "hr.policy"
+  },
+  {
+    "text": "Payment reminder for unpaid invoice #INV-6789",
+    "label": "finance.invoice"
+  },
+  {
+    "text": "Invoice for quarterly subscription Q3 2025",
+    "label": "finance.invoice"
+  },
+  {
+    "text": "Invoice for external vendor services Q4 2025",
+    "label": "finance.invoice"
+  },
+  {
+    "text": "Payment confirmation for invoice 2025-09-12",
+    "label": "finance.invoice"
+  },
+  {
+    "text": "Service-level agreement for client Y",
+    "label": "legal.contract"
+  },
+  {
+    "text": "Invoice for purchase order #PO-7893",
+    "label": "finance.invoice"
+  },
+  {
+    "text": "Payment received for invoice #2025-07-12",
+    "label": "finance.invoice"
+  },
+  {
+    "text": "Invoice for equipment purchase Q1 2025",
+    "label": "finance.invoice"
+  },
+  {
+    "text": "Non-compete agreement for key executives",
+    "label": "legal.contract"
+  },
+  {
+    "text": "Master service agreement with supplier Y",
+    "label": "legal.contract"
+  },
+  {
+    "text": "Employee handbook updated with vacation policies",
+    "label": "hr.policy"
+  },
+  {
+    "text": "Employee telework policy update Q2 2025",
+    "label": "hr.policy"
+  },
+  {
+    "text": "Employment contract for new hire John Doe",
+    "label": "legal.contract"
+  },
+  {
+    "text": "Updated HR policy for internal promotions and transfers",
+    "label": "hr.policy"
+  },
+  {
+    "text": "Invoice for cloud service subscription, June 2025",
+    "label": "finance.invoice"
+  },
+  {
+    "text": "Software licensing agreement for enterprise client",
+    "label": "legal.contract"
+  },
+  {
+    "text": "Payment request for invoice #2025-08-19",
+    "label": "finance.invoice"
+  },
+  {
+    "text": "Final invoice for services rendered to client XYZ",
+    "label": "finance.invoice"
+  },
+  {
+    "text": "Invoice #INV-7890 for quarterly HR services",
+    "label": "finance.invoice"
+  },
+  {
+    "text": "Updated HR policy on sick leave procedures",
+    "label": "hr.policy"
+  },
+  {
+    "text": "Payment receipt for invoice #INV-1001 dated 2025-03-12",
+    "label": "finance.invoice"
+  },
+  {
+    "text": "Invoice for IT consulting Q1 2025",
+    "label": "finance.invoice"
+  },
+  {
+    "text": "Policy on overtime and time tracking for employees",
+    "label": "hr.policy"
+  },
+  {
+    "text": "Quarterly invoice for project Alpha",
+    "label": "finance.invoice"
+  },
+  {
+    "text": "Policy for mandatory workplace safety training",
+    "label": "hr.policy"
+  },
+  {
+    "text": "Invoice for training services Q4 2025",
+    "label": "finance.invoice"
+  },
+  {
+    "text": "Revised invoice for client ABC, Q3 2025",
+    "label": "finance.invoice"
+  },
+  {
+    "text": "Payment due for invoice issued to client ABC",
+    "label": "finance.invoice"
+  },
+  {
+    "text": "Policy on employee code of conduct and ethics",
+    "label": "hr.policy"
+  },
+  {
+    "text": "Agreement on confidentiality obligations Q3 2025",
+    "label": "legal.contract"
+  },
+  {
+    "text": "Invoice #INV-3321 for legal consulting fees",
+    "label": "finance.invoice"
+  },
+  {
+    "text": "Billing statement for client ABC, Q2 2025",
+    "label": "finance.invoice"
+  },
+  {
+    "text": "Consulting agreement with Company Z",
+    "label": "legal.contract"
+  },
+  {
+    "text": "Invoice #INV-9021 for maintenance services",
+    "label": "finance.invoice"
+  },
+  {
     "text": "Mandatory compliance training policy for all staff",
     "label": "hr.policy"
   },
   {
-    "text": "Invoice for Q2 2025 total amount $8,450",
+    "text": "Invoice for office supplies, March 2025",
     "label": "finance.invoice"
+  },
+  {
+    "text": "HR guidance on parental leave entitlements",
+    "label": "hr.policy"
   },
   {
     "text": "New guidelines for work-from-home policy",
     "label": "hr.policy"
   },
   {
-    "text": "Invoice for Q3 2025 total amount $23,923",
+    "text": "Monthly invoice for consulting services, May 2025",
     "label": "finance.invoice"
   },
   {
-    "text": "Non-disclosure agreement for external partners",
+    "text": "Contract renewal for existing client services",
     "label": "legal.contract"
   },
   {
-    "text": "Service level agreement for client X",
+    "text": "Contract amendment for previously signed SLA",
+    "label": "legal.contract"
+  },
+  {
+    "text": "Independent contractor agreement for freelance work",
+    "label": "legal.contract"
+  },
+  {
+    "text": "Invoice #INV-5555 for Q1 2025 training materials",
+    "label": "finance.invoice"
+  },
+  {
+    "text": "Contract agreement between Company A and Company B",
     "label": "legal.contract"
   }
 ]

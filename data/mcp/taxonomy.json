@@ -10,9 +10,16 @@
         }
     },
     "hr": {
-        "leave_request": {
-            "description": "Requests for leave or time off.",
-            "keywords": ["leave", "vacation", "absence"]
+    "leave_request": {"..."},
+    "policy": {
+        "description": "Internal HR policies and guidelines.",
+        "keywords": ["policy", "guideline", "compliance"]
+        }
+    },
+    "legal": {
+        "contract": {
+            "description": "Contracts, agreements, and legal documents.",
+            "keywords": ["contract", "agreement", "nda", "sla"]
         }
     }
 }
