@@ -1,8 +1,10 @@
+import logging
 from functools import lru_cache
 from pathlib import Path
-from pydantic_settings import BaseSettings  # updated for Pydantic v2
+from pydantic_settings import BaseSettings
 from pydantic import Field
 
+logger = logging.getLogger(__name__)
 
 class Settings(BaseSettings):
     """
@@ -81,7 +83,21 @@ def get_settings() -> Settings:
     Ensures consistent config across the app.
     """
     settings = Settings()
-
+    
+    # HARD SAFETY GUARD FOR HF SPACES
+    # -------------------------
+    if settings.ENV == "hf_spaces":
+        settings.MCP_EMBEDDED = True
+        settings.MCP_FAIL_FAST = False
+        settings.ENABLE_ABSTENTION = False
+        logger.info(
+            "HF Spaces detected — forcing embedded MCP mode",
+            extra={
+                "env": settings.ENV,
+                "mcp_embedded": settings.MCP_EMBEDDED,
+                "abstention": settings.ENABLE_ABSTENTION,
+            },
+        )
     # Ensure required directories exist (safe for HF Spaces)
     settings.LOG_DIR.mkdir(parents=True, exist_ok=True)
     settings.MODEL_DIR.mkdir(parents=True, exist_ok=True)

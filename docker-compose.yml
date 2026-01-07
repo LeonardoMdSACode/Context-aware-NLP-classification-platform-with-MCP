@@ -1,3 +1,9 @@
+# =====================================================
+# LOCAL DEVELOPMENT ONLY
+# Not used or supported by Hugging Face Spaces
+# Provides distributed MCP servers for local testing
+# =====================================================
+
 version: "3.9"
 
 services:
@@ -7,7 +13,7 @@ services:
   backend:
     build:
       context: .
-      dockerfile: Dockerfile  # Root-level Dockerfile
+      dockerfile: Dockerfile
     container_name: nlp_backend
     command: uvicorn app.main:app --host 0.0.0.0 --port 8000
     ports:
@@ -18,33 +24,16 @@ services:
       - ./logs:/app/logs
       - ./data:/app/data
     environment:
-      - ENV=local
-      - DEBUG=True
-      - MCP_EMBEDDED=False
-      - MCP_TAXONOMY_URL=http://taxonomy_server:7001
-      - MCP_POLICY_URL=http://policy_server:7002
-      - MCP_HISTORY_URL=http://history_server:7003
+      ENV: local
+      DEBUG: "true"
+      MCP_EMBEDDED: "false"
+      MCP_DISTRIBUTED_TAXONOMY_URL: http://taxonomy_server:7001
+      MCP_DISTRIBUTED_POLICY_URL: http://policy_server:7002
+      MCP_DISTRIBUTED_HISTORY_URL: http://history_server:7003
     depends_on:
       - taxonomy_server
       - policy_server
       - history_server
-
-  # -------------------------
-  # Streamlit Frontend
-  # -------------------------
-  frontend:
-    image: python:3.11-slim
-    container_name: nlp_frontend
-    working_dir: /app
-    command: streamlit run ui/streamlit_app.py --server.port 8501 --server.address 0.0.0.0
-    ports:
-      - "8501:8501"
-    volumes:
-      - ./:/app
-    depends_on:
-      - backend
-    environment:
-      - ENV=local
 
   # -------------------------
   # MCP Servers
@@ -78,11 +67,3 @@ services:
       - "7003:7003"
     volumes:
       - ./mcp_servers/history_server/data:/app/data
-
-# -------------------------
-# Shared Volumes (optional)
-# -------------------------
-volumes:
-  models:
-  data:
-  logs:
