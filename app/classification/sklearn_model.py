@@ -5,6 +5,7 @@ import re
 from sklearn.pipeline import Pipeline
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
+from sklearn.calibration import CalibratedClassifierCV
 from typing import Dict
 import os
 
@@ -25,7 +26,8 @@ except ImportError:
 
 class SklearnClassifier:
     """
-    Lightweight TF-IDF + Logistic Regression classifier for finance/hr/legal.
+    Lightweight TF-IDF + Logistic Regression classifier for finance/hr/legal,
+    now with probability calibration.
     """
 
     # Make MODEL_PATH absolute relative to project root
@@ -38,9 +40,14 @@ class SklearnClassifier:
         else:
             dataset_path = Path(dataset_path)
 
+        # Base logistic regression
+        base_clf = LogisticRegression(max_iter=500, class_weight='balanced', C=1.0)
+        # Wrap with probability calibration
+        calibrated_clf = CalibratedClassifierCV(base_clf, cv=3, method='sigmoid')
+
         self.pipeline = Pipeline([
             ("tfidf", TfidfVectorizer(ngram_range=(1, 2))),
-            ("clf", LogisticRegression(max_iter=500, class_weight='balanced', C=1.0))
+            ("clf", calibrated_clf)
         ])
         self.is_trained = False
 
@@ -72,7 +79,7 @@ class SklearnClassifier:
         if self.is_trained:
             try:
                 label = self.pipeline.predict([text_clean])[0]
-                # fallback if pipeline has no predict_proba (safety)
+                # calibrated probabilities
                 try:
                     confidence = float(max(self.pipeline.predict_proba([text_clean])[0]))
                 except Exception:

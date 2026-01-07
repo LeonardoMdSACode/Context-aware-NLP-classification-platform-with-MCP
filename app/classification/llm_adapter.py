@@ -18,5 +18,5 @@ class LLMAdapter:
             result["label"] = "finance.invoice"
         # optionally adjust confidence
         if context and context.get("policies_applied"):
-            result["confidence"] = min(result["confidence"] + 0.1, 0.99)
+            result["confidence"] = min(result["confidence"] + 0.05, 0.99)
         return result
