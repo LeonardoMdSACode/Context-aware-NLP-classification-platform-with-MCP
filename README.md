@@ -15,7 +15,8 @@ license: mit
 
 This repository implements a **context-aware NLP classification platform** that combines a lightweight TF-IDF + Logistic Regression baseline with optional **LLM-assisted context re-ranking** via MCP (Managed Context Platform). It supports multi-domain classification (finance, HR, legal), structured context resolution, logging, and evaluation.
 
-The platform is modular and can run either **locally in a virtual environment** or inside a **Docker container**.
+The platform is modular and can run either **locally in a virtual environment** or inside a **Docker container in Hugging Face Spaces**.
+Hugging Face Space: [LeonardoMdSA / Context-aware-NLP-classification-platform-with-MCP](https://huggingface.co/spaces/LeonardoMdSA/Context-aware-NLP-classification-platform-with-MCP)
 
 ---
 
@@ -260,6 +261,7 @@ pytest -v
 ## Contact / Author
 
 Repository: [LeonardoMdSACode / Context-aware-NLP-classification-platform-with-MCP](https://github.com/LeonardoMdSACode/Context-aware-NLP-classification-platform-with-MCP)
+Hugging Face Space: [LeonardoMdSA / Context-aware-NLP-classification-platform-with-MCP](https://huggingface.co/spaces/LeonardoMdSA/Context-aware-NLP-classification-platform-with-MCP)
 
 ---
 
