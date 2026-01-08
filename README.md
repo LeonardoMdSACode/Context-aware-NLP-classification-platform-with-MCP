@@ -26,7 +26,7 @@ Or manual smoke test in test_backend.py
 
 python scripts\seed_data.py
 
-python scripts/train_model.py
+python scripts\train_model.py
 
 python scripts\evaluate.py
 
