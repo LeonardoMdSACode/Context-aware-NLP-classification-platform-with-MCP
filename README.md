@@ -242,6 +242,189 @@ pytest -v
 
 ---
 
+## Technology Stack
+
+This project implements a **production-style, context-aware NLP classification platform** with classical machine learning, MCP-based context enrichment, and a FastAPI inference layer.
+
+---
+
+### **Core Language & Runtime**
+
+* **Python 3.13**
+
+  * Primary implementation language
+  * Virtual environment support (`venv`)
+  * Compatible with local execution and Docker
+
+---
+
+### **Machine Learning & NLP**
+
+* **scikit-learn**
+
+  * `TfidfVectorizer` for text feature extraction
+  * `LogisticRegression` (multiclass, class-balanced)
+  * Optional probability calibration (`CalibratedClassifierCV`)
+* **Joblib**
+
+  * Model serialization and loading (`trained_pipeline.joblib`)
+* **Classical ML (non-deep learning)**
+
+  * Chosen for interpretability, determinism, and production realism
+
+---
+
+### **Text Representation**
+
+* **TF-IDF (Term Frequency–Inverse Document Frequency)**
+
+  * Unigram and bigram features
+  * Sparse vector representation
+  * Fast, explainable, and deterministic
+
+---
+
+### **Model Inference & Decision Logic**
+
+* **Custom classification orchestration**
+
+  * Confidence-based routing
+  * Abstention handling
+  * Deterministic fallback heuristics
+* **Context-aware decision layer**
+
+  * Predictions adjusted using MCP-derived signals
+* **Inference logging**
+
+  * Inputs, predicted labels, confidence scores, and context
+
+---
+
+### **Context & MCP (Model Context Protocol)**
+
+* **MCP-inspired architecture (local servers)**
+
+  * Context resolved dynamically at inference time
+* **Independent MCP servers**
+
+  * **Taxonomy Server** (SQLite-backed document taxonomy)
+  * **Policy Server** (YAML-based business rules)
+  * **History Server** (CSV-based label history)
+* **Context Resolver**
+
+  * Aggregates signals from all MCP servers
+  * Injects structured context into the classifier decision flow
+
+---
+
+### **Backend API**
+
+* **FastAPI**
+
+  * REST-based inference service
+  * Request/response validation
+  * Automatic OpenAPI documentation
+* **Uvicorn**
+
+  * ASGI server for local development and deployment
+* **Pydantic 2**
+
+  * Strict input/output schemas
+  * Validation and type safety
+
+---
+
+### **Frontend (Minimal UI)**
+
+* **HTML / CSS / JavaScript**
+* **Jinja2 Templates**
+* **FastAPI StaticFiles**
+  
+  * Lightweight inference interface
+  * No Streamlit or Gradio
+  * Hugging Face Spaces–compatible
+
+---
+
+### **Persistence & Storage**
+
+* **SQLite**
+
+  * Taxonomy storage (`taxonomy.sqlite`)
+* **Filesystem-based storage**
+
+  * Trained models
+  * Logs
+  * Evaluation artifacts
+
+---
+
+### **Logging & Observability**
+
+* **Structured logging**
+
+  * Inference logs
+  * Context resolution logs
+* **JSON-based log format**
+* Designed to support future:
+
+  * Drift detection
+  * Monitoring
+  * Alerting
+
+---
+
+### **Evaluation & Experimentation**
+
+* **Offline evaluation scripts**
+
+  * Accuracy, Precision, Recall, F1-score
+  * Detailed `classification_report`
+* **Separated train / evaluation datasets**
+* **Confidence analysis**
+
+  * Used to inspect calibration and overconfidence
+
+---
+
+### **Testing**
+
+* **pytest**
+
+  * API tests
+  * Classification logic tests
+  * Context resolution tests
+  * MCP server tests
+* **Smoke tests**
+
+  * End-to-end inference validation
+* **Shared fixtures** via `conftest.py`
+
+---
+
+### **DevOps & Packaging**
+
+* **Docker**
+
+  * Reproducible builds
+  * Containerized inference service
+* **Dependency management**
+
+  * `requirements.txt`
+  * `requirements-dev.txt`
+* **CI-ready repository structure**
+
+---
+
+### **Design Philosophy**
+
+* Classical ML over deep learning (intentional)
+* Context-aware inference over raw prediction
+* Explainability over black-box accuracy
+* Production realism over toy demos
+
+---
+
 ## Recommendations
 
 * Use a **larger, more diverse dataset** for real-world deployment to avoid overfitting
