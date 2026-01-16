@@ -412,7 +412,9 @@ This project implements a **production-style, context-aware NLP classification p
 
   * `requirements.txt`
   * `requirements-dev.txt`
-* **CI-ready repository structure**
+* **CI/CD repository structure**
+ 
+  * GitHub Actions
 
 ---
 
