@@ -1,0 +1,30 @@
+{
+  "leave_policy": {
+    "applies_to": "hr.policy",
+    "description": "Employee leave and time-off rules."
+  },
+  "remote_work_policy": {
+    "applies_to": "hr.policy",
+    "description": "Guidelines for remote work."
+  },
+  "onboarding_policy": {
+    "applies_to": "hr.onboarding",
+    "description": "New employee onboarding documents."
+  },
+  "nda_policy": {
+    "applies_to": "legal.nda",
+    "description": "Non-disclosure agreements for external partners."
+  },
+  "contract_policy": {
+    "applies_to": "legal.contract",
+    "description": "General contract rules for clients and vendors."
+  },
+  "invoice_policy": {
+    "applies_to": "finance.invoice",
+    "description": "Invoice format and payment guidelines."
+  },
+  "expense_policy": {
+    "applies_to": "finance.expense_report",
+    "description": "Internal employee reimbursement rules."
+  }
+}

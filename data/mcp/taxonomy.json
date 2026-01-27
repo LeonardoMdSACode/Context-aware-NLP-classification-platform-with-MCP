@@ -1,0 +1,12 @@
+{
+  "version": "1.1",
+  "categories": [
+    {"name": "finance.invoice", "description": "Invoices, payments, and financial documents."},
+    {"name": "finance.expense_report", "description": "Employee expense reports."},
+    {"name": "hr.policy", "description": "HR policies, guidelines, and internal rules."},
+    {"name": "hr.onboarding", "description": "Onboarding documents for new employees."},
+    {"name": "legal.contract", "description": "Legal contracts, NDAs, agreements."},
+    {"name": "legal.nda", "description": "Non-disclosure agreements."},
+    {"name": "marketing.material", "description": "Marketing brochures and materials."}
+  ]
+}

@@ -23,7 +23,7 @@ Hugging Face Space: [LeonardoMdSA / Context-aware-NLP-classification-platform-wi
 
 ## Repository Structure
 
-```
+```text
 Dockerfile
 LICENSE
 README.md
@@ -116,9 +116,9 @@ cd Context-aware-NLP-classification-platform-with-MCP
 ### 2. Create virtual environment
 
 ```bash
-python -m venv venv
-source venv/bin/activate   # Linux/macOS
-venv\Scripts\activate     # Windows
+python -m venv .venv
+source .venv/bin/activate   # Linux/macOS
+.venv\Scripts\activate     # Windows
 ```
 
 ### 3. Install dependencies
@@ -413,7 +413,7 @@ This project implements a **production-style, context-aware NLP classification p
   * `requirements.txt`
   * `requirements-dev.txt`
 * **CI/CD repository structure**
- 
+
   * GitHub Actions
 
 ---

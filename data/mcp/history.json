@@ -1,0 +1,25 @@
+{
+  "last_labels": [
+    {"text": "Invoice Q1 2025 for $15,200", "label": "finance.invoice"},
+    {"text": "Invoice Q2 2025 for $8,450", "label": "finance.invoice"},
+    {"text": "Invoice Q3 2025 for $23,923", "label": "finance.invoice"},
+    {"text": "HR policy update regarding leave", "label": "hr.policy"},
+    {"text": "New work-from-home guidelines", "label": "hr.policy"},
+    {"text": "Mandatory compliance training for all staff", "label": "hr.policy"},
+    {"text": "Contract agreement between Company A and Company B", "label": "legal.contract"},
+    {"text": "Non-disclosure agreement for external partners", "label": "legal.nda"},
+    {"text": "Service level agreement for client X", "label": "legal.contract"},
+    {"text": "Employee onboarding checklist", "label": "hr.onboarding"},
+    {"text": "Monthly expense report for marketing", "label": "finance.expense_report"},
+    {"text": "Marketing brochure for new product launch", "label": "marketing.material"},
+    {"text": "Invoice for Q4 2025 total amount $12,000", "label": "finance.invoice"},
+    {"text": "Contract amendment for supplier Y", "label": "legal.contract"},
+    {"text": "Updated company travel policy", "label": "hr.policy"},
+    {"text": "New NDA template for consultants", "label": "legal.nda"},
+    {"text": "Employee reimbursement request for Q1", "label": "finance.expense_report"},
+    {"text": "Welcome email package for new hires", "label": "hr.onboarding"},
+    {"text": "Marketing campaign plan for Q2", "label": "marketing.material"},
+    {"text": "Invoice for services rendered to client Z", "label": "finance.invoice"},
+    {"text": "Updated contractor agreement", "label": "legal.contract"}
+  ]
+}
