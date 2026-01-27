@@ -57,3 +57,8 @@ button:hover {
     min-height: 50px;
     overflow-x: auto;
 }
+
+textarea::placeholder {
+    color: #888;
+    opacity: 0.7;
+}

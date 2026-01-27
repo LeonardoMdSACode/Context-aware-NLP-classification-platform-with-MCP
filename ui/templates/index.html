@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Context-aware NLP Classification with MCP</title>
-    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="/static/style.css?v=1.0.3">
 </head>
 <body>
     <div class="container">
@@ -11,7 +11,9 @@
 
         <div class="input-section">
             <label for="query">Enter text for classification:</label>
-            <textarea id="query" placeholder="Type your text here..."></textarea>
+            <textarea id="query" placeholder="e.g. Policy update regarding mandatory cybersecurity training => hr.policy;
+Consulting agreement with Company Z => legal.contract;
+Monthly invoice for consulting services, May 2025 => finance.invoice."></textarea>
             <button onclick="sendQuery()">Submit</button>
         </div>
 
