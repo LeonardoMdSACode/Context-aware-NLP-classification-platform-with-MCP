@@ -2,25 +2,30 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Context-aware NLP Classification with MCP</title>
-    <link rel="stylesheet" href="/static/style.css?v=1.0.3">
+    <title>Context-aware NLP Classification Platform with MCP</title>
+    <link rel="stylesheet" href="/static/style.css?v=1.0.4">
 </head>
 <body>
     <div class="container">
-        <h1>Context-aware NLP Classification Platform</h1>
-
-        <div class="input-section">
-            <label for="query">Enter text for classification:</label>
-            <textarea id="query" placeholder="e.g. Policy update regarding mandatory cybersecurity training => hr.policy;
-Consulting agreement with Company Z => legal.contract;
-Monthly invoice for consulting services, May 2025 => finance.invoice."></textarea>
-            <button onclick="sendQuery()">Submit</button>
-        </div>
+        <h1>Context-aware NLP Classification Platform with MCP</h1>
+        <h3 class="subtitle">Multi-domain classification (finance, HR, legal).</h3>
 
         <div class="output-section">
             <h2>Prediction Result:</h2>
             <pre id="result">Waiting for input...</pre>
         </div>
+
+        <div class="input-section">
+            <label for="query">Enter text for classification:</label>
+            <textarea id="query" placeholder="e.g. Policy update regarding mandatory cybersecurity training
+Consulting agreement with Company Z
+Monthly invoice for consulting services, May 2025"></textarea>
+            <button onclick="sendQuery()">Submit</button>
+        </div>
+
+        <footer>
+            <p>Made with FastAPI & Python 3.13 — Context-aware NLP with MCP & TF-IDF.</p>
+        </footer>
     </div>
 
     <script src="/static/script.js"></script>
